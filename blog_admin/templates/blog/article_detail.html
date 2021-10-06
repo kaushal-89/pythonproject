@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{%  block title %}
+Blog Details
+{% endblock title %}
+
+{% block content %}
+
+    <h1>{{ article.title }}</h1>
+    <p><strong>By {{ article.author }}, </strong>
+        <span style="font-style:italic;">Published on {{ article.publication_date }}</span>
+    </p>
+    <p>{{ article.excerpt }}</p>
+    <p>{{ article.content }}</p>
+    {% if article.allow_comment == '1' %}
+    <form action="" method="post" novalidate>
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td>&nbsp</td>
+                <td><input  type="submit" name="submit" value="submit"></td>
+            </tr>
+        </table>
+    {% endif %}
+{% endblock content %}
+
+{% block javascript %}
+  <script>
+    $("#submit").click(function () {
+
+      var authorname = $('#comment_author').val();
+      var comment = $('#comment').val();
+      var article = $('#article').val();
+      console.log(authorname );
+      console.log(comment);
+      if(authorname == '' || comment == '')
+      {
+        alert('Name and comment fields can not be blank..');
+        return false;
+      }
+      //return false;
+      $.ajax({
+        url: '/add_comment/',
+        type: 'post',
+        data: {
+          'authorname': authorname,
+          'comment': comment,
+          'article':article,
+          csrfmiddlewaretoken: window.CSRF_TOKEN,
+        },
+        beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      },
+        success: function (data) {
+            console.log(data);
+          alert('Thank you for comment!!');
+        }
+      });
+
+    });
+  </script>
+{% endblock javascript%}

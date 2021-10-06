@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%  block title %}
+Course Details
+{% endblock title %}
+
+{% block content %}
+
+    <h1>Couse Name: {{ course.name }}</h1>
+    <p><strong>{{ course.instructor }}</strong></p>
+    <p><strong>{{ course.start_date }}</strong></p>
+    <p><strong>{{ course.end_date }}</strong></p>
+    <p><strong>{{ course.students.all |join:", " }}</strong></p>
+    <p><strong>{{ course.description }}</strong></p>
+{% endblock content %}

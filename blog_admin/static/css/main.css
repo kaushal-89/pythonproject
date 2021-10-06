@@ -1,0 +1,15 @@
+h1{
+color:#ff8f00;
+}
+
+table{
+    width: 262px;
+    height: 200Px;
+    background: #ccc;
+    padding: 12px;
+}
+#commentSection{
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 251px;
+}

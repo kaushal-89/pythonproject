@@ -1,0 +1,22 @@
+{%  extends 'base.html' %}
+
+{% block title %}
+Course List page
+{%  endblock title %}
+
+{% block content %}
+
+    <h1> Course List</h1>
+    {% if course_list %}
+    <ul>
+        {% for course in course_list %}
+            <li>
+                <a href="{{ course.get_absolute_url }}">{{ course.name }}</a>
+                ({{ course.start_date }})
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No courses scheduled</p>
+    {%  endif %}
+{% endblock content %}

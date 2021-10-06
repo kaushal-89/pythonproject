@@ -1,0 +1,22 @@
+{%  extends 'base.html' %}
+
+{% block title %}
+Blog List page
+{%  endblock title %}
+
+{% block content %}
+
+    <h1> Blog List</h1>
+    {% if article_list %}
+    <ul>
+        {% for article in article_list %}
+            <li>
+                <a href="{{ article.get_absolute_url }}"><h2>{{ article.title }}</h2></a>
+                <span>Published on {{ article.publication_date }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No courses scheduled</p>
+    {%  endif %}
+{% endblock content %}
