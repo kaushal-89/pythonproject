@@ -1,0 +1,46 @@
+1) enable git in your application
+2) create .gitignore file- write
+*.sqlite3
+*.pyc
+3) Initialize git- with terminal - git init
+4) git add .
+5) git status
+6) git commit -m"Initial commit"
+7) create Procfile(shell executed file) in main project - which contain command to run your application- write in this file as
+web: gunicorn django_project.wsgi --log-file -
+8) install gunicorn - pip install gunicorn
+9) to check gunicorn is wroking - run- gunicorn django_project.wsgi --log-file -
+10) pip install dj-database-url
+11) In setting.py file add 
+
+import dj_database_url
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+12) Install whitenoise liberary which helps you to serve static files
+pip install whitenoise
+13) In setting file Middleware = after securityMiddleWhere add
+'whitenoise.middleware.WhiteNoiseMiddleware',
+
+14) Add STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' in setting.py just after middleware
+It help to compressed all big static files 
+15) pip freeze > requirements.txt -which contail all packages which installed
+16) add psycopg2==2.8.5 in requiremnets.txt file
+17) create runtime.txt file which contain and add python-3.7.9 - this will install on server
+18) pip freeze only return that packages which are installed
+19) git add .
+20) git commit -m'initial commit 2'
+21) install heroku cli - go to browse and search heroku cli
+22) run command- sudo snap install --classic heroku in another terminal , on system
+23) heroku create kaushal-project
+24) git push heroku master
+25) ALLOWED_HOSTS = ['kaushal-project.herokuapp.com']
+26) heroku run python manage.py migrate
+27) heroku run python manage.py createsuperuser
+
+https://kaushal-project.herokuapp.com/location/location_api/
+https://kaushal-project.herokuapp.com/location/add_location/
+https://kaushal-project.herokuapp.com/location/delete_location/2/
+https://kaushal-project.herokuapp.com/cal/
+https://kaushal-project.herokuapp.com/cal/contact/
